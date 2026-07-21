@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+  <div class="calculator-window">
+
+    <!-- Title bar -->
+    <div class="titlebar">
+      <div class="titlebar-left">
+        <span class="titlebar-icon">▦</span>
+        <span>Calculator</span>
+      </div>
+      <div class="titlebar-controls">
+        <span class="minimize">&#8211;</span>
+        <span class="maximize">&#9633;</span>
+        <span class="close">&#10005;</span>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <div class="calc-main">
+
+        <!-- Mode header -->
+        <div class="mode-header">
+          <div class="hamburger"><span></span><span></span><span></span></div>
+          <div class="mode-title">Standard</div>
+          <div class="pin-icon"></div>
+        </div>
+
+        <!-- Display -->
+        <div class="display">0</div>
+
+        <!-- Memory row -->
+        <div class="mem-row">
+          <button>MC</button>
+          <button>MR</button>
+          <button>M+</button>
+          <button>M&minus;</button>
+          <button>MS</button>
+        </div>
+
+        <!-- Keypad -->
+        <div class="keypad">
+          <button class="func">%</button>
+          <button class="func">CE</button>
+          <button class="func">C</button>
+          <button class="func">&#9003;</button>
+
+          <button class="func">1/x</button>
+          <button class="func">x<sup>2</sup></button>
+          <button class="func">&#8730;x</button>
+          <button class="func">&divide;</button>
+
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button class="func">&times;</button>
+
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button class="func">&minus;</button>
+
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button class="func">+</button>
+
+          <button class="func">+/&minus;</button>
+          <button>0</button>
+          <button>.</button>
+          <button class="equals">=</button>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-tabs">
+          <button class="tab active">History</button>
+          <button class="tab">Memory</button>
+        </div>
+        <div class="sidebar-empty">There's no history yet.</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment</title>
+</head>
+<body>
+  
+
+    <input type="text" id="inp">
+    <button onclick="addition()">Add</button>
+    <button onclick="subtraction()">Subtract</button>
+
+
+
+    <script>
+        let inputEl = document.getElementById("inp");
+        let userInput;
+        // console.log(inputEl);
+        
+
+        function addition() {
+            userInput = parseInt(inputEl.value);
+            console.log(typeof(userInput));
+            
+            inputEl.value = ++userInput;
+
+        }
+
+        function subtraction() {
+          userInput = Number(inputEl.value);
+          inputEl.value = --userInput
+          
+        }
+
+
+        //preincrement - ++
+        let a = 2;
+        // console.log(++a);
+        // console.log(a++);//2
+        // console.log(a);
+
+        // console.log(--a + a--);//1 + 1
+
+        // console.log(++a);
+
+        let num = 5;
+        // num = num + 2
+        // console.log(num+=2);
+
+        // num*=2
+        num = num * 2
+        console.log(num);
+        
+        
+      
+        // console.log(num++);
+        // console.log(num++ + --num + num--);//
+        // console.log(num);
+        
+
+        
+        
+        
+        
+        
+        //postincrement
+        //predecrement
+        //postdecrement
+
+
+        //Assignment
+        //Read on DOM - Document Object Model
+    </script>
+</body>
+</html>

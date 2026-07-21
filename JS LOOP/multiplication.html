@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" id="firstInput" placeholder="Begin a number">
+    <input type="number" id="secondInput" placeholder="End a number">
+    <button onclick="multiplcationTable()">Show Table</button>
+    <p id="result"></p>
+
+    <script>
+        function multiplcationTable() {
+            let firstNumber = Number(document.querySelector("#firstInput").value);
+            let secondNumber = Number(document.querySelector("#secondInput").value);
+            let output = "";
+            for (let number = firstNumber; number <= secondNumber; number++) {
+                output += "<h2>Multiplication Table of " + number + "</h2>"
+
+                for (let digit = 1; digit <= 12; digit++) {
+                    output += `${number} * ${digit} = ${number * digit} <br>`
+                }
+            }
+
+            document.getElementById("result").innerHTML = output;
+        }
+
+    </script>
+</body>
+
+</html>

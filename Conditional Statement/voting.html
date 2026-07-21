@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+</head>
+<body>
+    <h1>Voting System</h1>
+    <input type="number" id="input" placeholder="Enter your current age">
+    <button onclick="vote()">Check Eligibility</button>
+    <p id="display"></p>
+
+
+    <h3>Voting Guide</h3>
+    <input type="text" id="age">
+    <button id="check">Check Eligibility</button>
+    <div id="output"></div>
+
+
+    <script>
+        function vote() {
+            let v = document.getElementById("input").value;
+            let output = ""
+
+        if (v >= 18) {
+           output += "<p>You are eligible</p>"
+           
+        }else if(v == ""){
+            output += "<p>Field cannot be empty</p>"
+
+        }else if(v <= 0){
+            output += "<p>Please enter a valid age</p>"
+
+        }else if (v < 18){
+            output += "<p>You are ineligible</p>"
+        }
+        document.getElementById("display").innerHTML = output;
+        }
+    
+        // Assignment
+        // Create a grading system on a scale of 5.0 cgpa
+
+        let age = document.getElementById("age");
+        let btn = document.getElementById("check");
+        let result = document.getElementById("output");
+
+        btn.addEventListener("click", ()=>{
+            let userAge = Number(age.value);
+            if (userAge == "") {
+                result.textContent = "Enter a value age";
+
+            }else if (isNaN(userAge)) {
+                result.textContent = "Please enter a valid number.";
+
+            }else if(userAge >= 18){
+                result.textContent = "You are eligible to vote";
+
+            }else if(userAge < 0){
+                result.textContent = "Please enter a valid age";
+
+            }else if(userAge < 18){
+                result.textContent = "You are not eligible to vote";
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>

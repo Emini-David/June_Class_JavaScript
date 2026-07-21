@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="message">Hello David!</p>
+
+    <div id="box">
+        I love pizza 🍕
+    </div>
+
+    <input type="password" placeholder="Enter your password">
+    <div id="division">Hello</div>
+
+    <input id="input" type="text" placeholder="Enter your name here">
+    <button onclick="document.getElementById('output').innerHTML = document.getElementById('input').value">Create</button>
+    <p id="output"></p>
+
+    <input type="text" placeholder="Enter your name here" id="inp" onkeyup="console.log('hello');">
+    <script>
+        // Js Event - Mouse event, key events
+        // 1. Mouse Events
+        // onclick
+        // ondblclick
+        // onmouseover
+        // onmouseenter
+        // onmouseout
+        // 2. Key Events
+        // oninput
+        // onkeydown
+        // onkeyup
+
+        // 3. Form Events
+        
+        //4. DOM
+
+        // Assignment
+        // What is the different between innerHTML and textContent?
+        // Create an input element and a button. Whatsoever user type inside the input display it on the page.
+        
+        const message = document.getElementById("message");
+        message.textContent = "Good Morning!";
+
+        const box = document.getElementById("box");
+        console.log(box.textContent);
+        box.textContent = "I love ice cream";
+
+        let getDivTag = document.getElementById("division");
+        getDivTag.innerHTML = "<h1>Good morning</h1>";
+
+
+    </script>
+</body>
+</html>

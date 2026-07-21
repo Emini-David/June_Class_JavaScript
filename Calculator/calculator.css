@@ -1,0 +1,278 @@
+:root {
+    --bg-main: #2b2230;
+    --bg-titlebar: #241c29;
+    --bg-display: #2b2230;
+    --bg-btn: #3a2f40;
+    --bg-btn-hover: #4a3d52;
+    --bg-mem-row: #2f2535;
+    --bg-equals: #4cc2ff;
+    --bg-equals-hover: #3ab0ee;
+    --text-light: #f3f0f5;
+    --text-dim: #b9aec0;
+    --accent: #4cc2ff;
+    --border: #423650;
+  }
+
+* { box-sizing: 
+    border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(ellipse at top right, #3a2a40, #1f1722 70%);
+  }
+
+  .calculator-window {
+    width: 100%;
+    max-width: 760px;
+    margin: 20px auto;
+    background: var(--bg-main);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    color: var(--text-light);
+  }
+
+  /* Title bar */
+  .titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-titlebar);
+    padding: 8px 12px;
+    user-select: none;
+  }
+
+  .titlebar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .titlebar-icon {
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #1f1722;
+    font-weight: bold;
+  }
+
+  .titlebar-controls {
+    display: flex;
+    gap: 18px;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .titlebar-controls span:hover {
+    color: var(--text-light);
+  }
+
+  .titlebar-controls .close:hover {
+    color: #ff6b6b;
+  }
+
+  /* Main content area: calc + sidebar */
+  .content-area {
+    display: flex;
+    flex: 1;
+  }
+
+  .calc-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mode header */
+  .mode-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 6px 16px;
+  }
+
+  .hamburger {
+    width: 20px;
+    height: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--text-light);
+    border-radius: 2px;
+  }
+
+  .mode-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .pin-icon {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--text-dim);
+    border-radius: 3px;
+    transform: rotate(45deg);
+  }
+
+  /* Display */
+  .display {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 10px 24px 14px 24px;
+    font-size: 56px;
+    font-weight: 300;
+    min-height: 90px;
+    word-break: break-all;
+    text-align: right;
+  }
+
+  /* Memory row */
+  .mem-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--bg-mem-row);
+  }
+
+  .mem-row button {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 14px;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .mem-row button:hover {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-light);
+  }
+
+  /* Keypad */
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 2px;
+    flex: 3;
+  }
+
+  .keypad button {
+    border: none;
+    background: var(--bg-btn);
+    color: var(--text-light);
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.12s ease, transform 0.06s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+  }
+
+  .keypad button:hover {
+    background: var(--bg-btn-hover);
+  }
+
+  .keypad button:active {
+    transform: scale(0.97);
+  }
+
+  .keypad button.equals {
+    background: var(--bg-equals);
+    color: #1f1722;
+    font-weight: 600;
+  }
+
+  .keypad button.equals:hover {
+    background: var(--bg-equals-hover);
+  }
+
+  .keypad button.func {
+    font-size: 16px;
+  }
+
+  .keypad button sup {
+    font-size: 12px;
+    margin-left: 1px;
+  }
+
+  /* Sidebar (History / Memory panel) */
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 14px 18px;
+  }
+
+  .sidebar-tabs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 14px;
+  }
+
+  .sidebar-tabs .tab {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 15px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+
+  .sidebar-tabs .tab.active {
+    color: var(--text-light);
+    border-bottom-color: var(--accent);
+  }
+
+  .sidebar-empty {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  /* Responsive behavior */
+  @media (max-width: 700px) {
+    .sidebar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .display {
+      font-size: 40px;
+      min-height: 70px;
+    }
+    .keypad button {
+      font-size: 17px;
+      min-height: 54px;
+    }
+    .mode-title {
+      font-size: 16px;
+    }
+  }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="username">
+    <p id="output"></p>
+
+    <input type="password" placeholder="Your password here" id="input" onkeyup="document.getElementById('display').innerHTML = document.getElementById('input').value">
+    <p id="display"></p>
+
+    <input type="text" placeholder="Your name here" onkeydown="document.getElementById('show').textContent = value">
+    <p id="show"></p>
+
+
+    <script>
+     const username = document.getElementById("username");
+     const output = document.getElementById("output");
+     username.addEventListener("input", function(){
+        output.textContent = username.value;
+});
+    </script>
+</body>
+</html>

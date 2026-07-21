@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Checker</title>
+</head>
+<body>
+    <div>
+        <h1>Enter your score to confirm your class of Degree</h1>
+        <input type="number" id="cgpa">
+        <button id="checker">Confirm your result here</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let cgpa = document.getElementById("cgpa");
+        let button = document.getElementById("checker");
+        let output = document.getElementById("result");
+
+        button.addEventListener("click", ()=>{
+            let studentInput = Number(cgpa.value);
+            if(studentInput == ""){
+                output.textContent = "Please enter a valid grade"
+            }else if(studentInput < 0 || studentInput > 5 ){
+                output.textContent = "Must be between 0 and 5.0"
+            }else if (studentInput >= 4.5){
+                output.textContent = "Awesome! You made a First Class! Keep shining!"
+            }else if(studentInput >= 3.5){
+                output.textContent = "Nice work! You badged a Second Class Upper Divion. Your hard work really paid off."
+            }else if(studentInput >= 2.40){
+                output.textContent = "Success is success! You badged a Second Class Lower Divion.Celebrate your achievement."
+            }else if(studentInput >= 1.5){
+                output.textContent = "You crossed the finish line. You badged a Third Class Divion. Be proud of your achievement."
+            }else if(studentInput >= 1.0){
+                output.textContent = "You passed! Keep believing in yourself."
+            }else if (studentInput >= 0.0){
+                output.textContent = "Failure isn't the end—it's a lesson for your next success."
+            }
+        })
+    </script>
+</body>
+</html>

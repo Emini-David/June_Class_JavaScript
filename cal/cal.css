@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 50px;
+    background-color: #1a1a2e;
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.cal-wrapper {
+    background-color: #202020;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    width: 340px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 16px;
+    border: 2px solid #4f4f4f;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px 6px;
+}
+
+.cal-img {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #cccccc;
+}
+
+.cal-img img {
+    width: 18px;
+    height: 18px;
+}
+
+.min-cal {
+    display: flex;
+    gap: 2px;
+    list-style: none;
+}
+
+.min-cal li {
+    width: 36px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #cccccc;
+}
+.min-cal li:hover {
+    background-color: #3a3a3a;
+}
+.red li{
+    width: 36px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #cccccc;
+}
+.red li:hover{
+    background-color: crimson;
+}
+nav {
+    padding: 4px 14px 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.standard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.standard li {
+    list-style: none;
+    width: 36px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #cccccc;
+    font-size: 14px;
+}
+.standard li:hover {
+    background-color: #3a3a3a;
+}
+
+.standard h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    flex: 1;
+    text-align: center;
+}
+.history li{
+    list-style: none;
+}
+
+.display {
+    text-align: right;
+    font-size: 52px;
+    font-weight: 300;
+    padding: 10px 18px 6px;
+    color: #ffffff;
+    letter-spacing: -1px;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+section {
+    padding: 4px 10px 6px;
+}
+
+section ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+section ul li {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    color: #888888;
+    padding: 6px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+section ul li:hover {
+    background-color: #2e2e2e;
+    color: #cccccc;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    padding: 0 8px;
+}
+.keypad button {
+    height: 54px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: 0.1s ease;
+    color: #ffffff;
+    background-color: #484848;
+}
+.keypad button:hover{
+    background-color: #2d2d2d;
+}
+
+.keypad button.func {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.keypad button.func:hover {
+    background-color: #3a3a3a;
+}
+
+.keypad button.func:active {
+    background-color: #4a4a4a;
+}
+
+.keypad button.num {
+    background-color: #3b3b3b;
+    color: #ffffff;
+}
+
+.keypad button.num:hover {
+    background-color: #484848;
+}
+
+.keypad button.num:active {
+    background-color: #555555;
+}
+
+.keypad button.equals {
+    background-color: #0078d4;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.keypad button.equals:hover {
+    background-color: #1a8ae0;
+}
+
+.keypad button.equals:active {
+    background-color: #005fa3;
+}

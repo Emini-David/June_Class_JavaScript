@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        // using the DOM method to create 2 elements and append one element to another.
+        let createP = document.createElement("p");
+        let createAnchor = document.createElement("a");
+        createAnchor.setAttribute("href", "https://www.google.com");
+        createAnchor.textContent = "Click here to go to Google";
+        createP.appendChild(createAnchor);
+        console.log(createP);
+
+        let createH1 = document.createElement("h1");
+        let createImg = document.createElement("img");
+        createImg.setAttribute("src", "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
+        createImg.setAttribute("alt", "Google Logo");
+        // appendchild
+        createH1.appendChild(createImg);
+        document.body.appendChild(createH1);
+
+        // getAttribute
+
+
+
+        // To create a div and a p tag
+        let createDiv = document.createElement("div");
+        let createPara = document.createElement("p");
+        createDiv.appendChild(createPara);
+        console.log(createDiv);
+        createDiv.removeChild(createPara);
+        console.log(createDiv);
+        
+    </script>
+</body>
+</html>

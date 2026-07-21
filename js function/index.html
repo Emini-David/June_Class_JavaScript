@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <!-- <button onclick="calculate()">Click</button> -->
+    <h1 id="showCalculate"></h1>
+    <p id="output"></p>
+
+    <script>
+        //Js function - is a block of codes used to perform a specific task
+        //declaration function 
+        // function calculate(){
+        //     console.log(3 + 7);
+            
+        // //    document.getElementById("showCalculate").innerHTML = 3 + 7;
+         
+        // }
+        // calculate();
+
+        // function addition(){
+        //     console.log(10 + 3);
+            
+        // }//declaration of function
+
+        // addition()//calling or invocating the function
+
+
+
+        //Anonymous function is a function that does not have a function name
+    //    ( function (){
+    //         console.log("sola");
+    //         document.getElementById("output").innerHTML = "sola"
+            
+    //     })()
+
+    
+
+        (function (){
+            console.log("sola");
+            document.getElementById("output").innerHTML = "sola"
+            
+        })()//self invocation
+
+        //expression
+        // let studentName = () => {
+        //     console.log("Tunde");
+            
+        // }//ES6 function
+
+        // console.log(studentName);
+        
+        // studentName()//invocation
+
+        let myName = () => {
+            console.log("Israel");
+            
+        }
+        myName()
+    
+
+
+
+        // calculate();//invocation
+
+        //Assignment
+        //Study parametized function
+        function adding(a = 6, b) {
+            // console.log("My name is " + a + " " + b);
+            
+            console.log(a + b);
+         
+        }
+
+        adding(3, 7)
+
+
+// console.log(add(5, 3));   // 8
+// console.log(subtract(10, 20)); // 30
+// console.log(add(7, 15));  // 22
+
+
+
+    </script>
+</body>
+</html>

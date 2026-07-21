@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New JavaScript Loop</title>
+</head>
+<body>
+    <style>
+    #output {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.table {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    /* box-shadow: 0 0 5px rgba(0,0,0,.2);  */
+}
+
+.table h3{
+    text-align:center;
+    margin-bottom:10px;
+}
+    </style>
+
+
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;background-color: #f0f0f0; padding: 20px;">
+        <h1>Multiplication of Numbers</h1>
+        <div id="output"></div>
+    </div>
+
+
+    <script>
+        let output = document.querySelector("#output");
+        for (let outer = 2; outer <= 12; outer++) {
+
+        let table = document.createElement("div");
+        table.classList.add("table");
+
+        table.innerHTML = `<h3 style="text-align:left; color: red">${outer} Times Table</h3>`;
+
+        for (let inner = 1; inner <= 12; inner++) {
+        table.innerHTML += `
+            <div>${outer} × ${inner} = ${outer * inner}</div>
+        `;
+    }
+
+    output.appendChild(table);
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="text-align:center;">
+    <h1 style="color:#006600">GeeksforGeeks</h1>
+
+    <div id="test-btn">
+        The following element contains some<bold>bold</bold> and some <italic>italic text</italic>.
+    </div>
+
+    <p></p>
+
+    <button onClick="innerHTMLfn()">
+        innerHTML
+    </button>
+
+    <button onClick="textContentfn()">
+        textContent
+    </button>
+
+    <p id="demo-para"></p>
+
+    <script>
+        function textContentfn() {
+            let elem = document.getElementById('test-btn');
+            alert(elem.textContent);
+        }
+
+        function innerHTMLfn() {
+            let elem = document.getElementById('test-btn');
+            alert(elem.innerHTML);
+        } 
+    </script>
+</body>
+
+</html>

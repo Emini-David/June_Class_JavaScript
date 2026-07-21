@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameterizing Function</title>
+</head>
+<body>
+
+
+    <!-- Parameterizing a function simply means defining a function so that it accepts one or more parameters (inputs). These parameters allow the function to work with different values each time it is called.
+
+    Without parameters
+    The function always produces the same result.
+     -->
+
+
+    <!-- With parameters
+    The function becomes flexible because it accepts input. -->
+
+
+
+    <script>
+    
+    
+    function greet() {
+    console.log("Hello, David!");
+}
+
+greet();
+
+
+
+    function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+
+greet("Tola");
+greet("Grace");
+greet("John");
+
+// Hello, David!
+// Hello, Grace!
+// Hello, John!
+// Here, name is the parameter, while "David", "Grace", and "John" are arguments.
+
+    function add(a, b) {
+    return a + b;
+}
+
+console.log(add(5, 3));   // 8
+console.log(add(10, 20)); // 30
+console.log(add(7, 15));  // 22
+
+// - a and b are parameters.
+// - 5, 3, 10, 20, 7, and 15 are arguments.
+
+// Because the function is parameterized, it can add any two numbers, not just one specific pair.
+
+
+
+    function add(a, b) {
+    return a + b;
+}
+
+    function subtract(a, b) {
+    return a - b;
+}
+
+console.log(add(20, 10));      // 30
+console.log(subtract(20, 10)); // 10
+
+    </script>
+</body>
+</html>

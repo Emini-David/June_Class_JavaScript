@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <!-- <a href=""></a>
+    <img src="" alt=""> -->
+    <div id="greeting">Hello</div>
+    <p id="greet">Good morning</p>
+    <input type="text" placeholder="Enter your name" id="inp" onkeyup="console.log(document.getElementById('inp').value);
+    ">
+    <div id="message"></div>
+     <input type="text" placeholder="Typing..." id="input" onkeyup="document.getElementById('paragraph').innerHTML = document.getElementById('input').value">
+    <p id="paragraph">
+
+    </p>
+
+    <div class="code">
+        This is my code
+    </div>
+    <div class="code">
+        Life is good when you have money.
+    </div>
+    <script>
+        //DOM- Document Object Model
+        //1. Selecting element
+        //Methods used to select element
+        //getElementById
+       let getDiv = document.getElementById("greeting");
+       console.log(getDiv);
+       console.log(getDiv.innerHTML);
+
+       let getP = document.getElementById("greet");
+       console.log(getP.innerHTML);
+
+       let getInp = document.getElementById("inp");
+       console.log(getInp.value);
+       
+       const message = document.getElementById('message');
+       message.textContent = "This is SQI college of ICT and I am proud to be here";
+
+        
+        //getElementByClassName
+        let getClassName = document.getElementsByClassName("code")
+        console.log(getClassName);
+
+
+        //getElementByTagName
+        let getTagName = document.getElementsByTagName("div");
+        console.log(getTagName);
+
+
+        //querySelector
+        let getMessage = document.querySelectorAll(".code");
+        console.log(getMessage);
+        //querySelectorAll
+    </script>
+
+    // Read about query selector and query selector all
+    
+</body>
+</html>

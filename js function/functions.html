@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button onclick="addition()">Add</button>
+    <button onclick="subtraction()">Sub</button>
+
+
+
+
+
+
+    <script>
+        let inputEle = document.getElementById("input");
+        let userInput;
+        
+        function addition(){
+            userInput = inputEle.value;
+            inputEle.value = ++userInput;
+        }
+        function subtraction(){
+            userInput = inputEle.value;
+            inputEle.value = --userInput;
+        }
+
+    </script>
+</body>
+</html>
