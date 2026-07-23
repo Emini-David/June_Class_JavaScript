@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+</head>
+
+<body>
+
+    <h2>Mini Quiz App</h2>
+
+    <h3 id="question"></h3>
+
+    <button class="option"></button><br><br>
+    <button class="option"></button><br><br>
+    <button class="option"></button><br><br>
+    <button class="option"></button><br><br>
+
+    <h3 id="feedback"></h3>
+
+    <button id="next" style="display:none;">Next Question</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+
+        // Questions
+        let questions = [
+            "Capital of Nigeria?",
+            "5 + 3 = ?",
+            "HTML stands for?",
+            "Which language makes webpages interactive?",
+            "Largest planet?"
+        ];
+
+        // Options
+        let options = [
+            ["Abuja", "Lagos", "Ibadan", "Kano"],
+            ["6", "7", "8", "9"],
+            ["Hyper Text Markup Language", "High Tech Machine Language", "Home Tool Markup Language", "None"],
+            ["Python", "Java", "JavaScript", "PHP"],
+            ["Earth", "Mars", "Jupiter", "Venus"]
+        ];
+
+        // Correct Answers
+        let answers = [0, 2, 0, 2, 2];
+
+        // Shuffle questions
+        for (let i = questions.length - 1; i > 0; i--) {
+
+            let random = Math.floor(Math.random() * (i + 1));
+
+            // Questions
+            let tempQuestion = questions[i];
+            questions[i] = questions[random];
+            questions[random] = tempQuestion;
+
+            // Options
+            let tempOption = options[i];
+            options[i] = options[random];
+            options[random] = tempOption;
+
+            // Answers
+            let tempAnswer = answers[i];
+            answers[i] = answers[random];
+            answers[random] = tempAnswer;
+
+        }
+
+        let question = document.getElementById("question");
+        let buttons = document.querySelectorAll(".option");
+        let feedback = document.getElementById("feedback");
+        let next = document.getElementById("next");
+        let result = document.getElementById("result");
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        displayQuestion();
+
+        function displayQuestion() {
+
+            question.innerHTML = questions[currentQuestion];
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerHTML = options[currentQuestion][i];
+                buttons[i].disabled = false;
+            }
+
+            feedback.innerHTML = "";
+            next.style.display = "none";
+
+        }
+
+        // Button Click
+        for (let i = 0; i < buttons.length; i++) {
+
+            buttons[i].addEventListener("click", function () {
+
+                if (i === answers[currentQuestion]) {
+                    feedback.innerHTML = "✅ Correct!";
+                    score++;
+                } else {
+                    feedback.innerHTML = "❌ Wrong!";
+                }
+
+                for (let j = 0; j < buttons.length; j++) {
+                    buttons[j].disabled = true;
+                }
+
+                next.style.display = "inline";
+
+            });
+
+        }
+
+        // Next Question
+        next.addEventListener("click", function () {
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+
+                displayQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+
+        });
+
+        function showResult() {
+
+            question.innerHTML = "Quiz Completed";
+
+            feedback.innerHTML = "";
+
+            next.style.display = "none";
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].style.display = "none";
+            }
+
+            let percentage = (score / questions.length) * 100;
+
+            let remark = "";
+
+            if (percentage === 100) {
+                remark = "Excellent 🎉";
+            }
+            else if (percentage >= 70) {
+                remark = "Very Good 👍";
+            }
+            else if (percentage >= 50) {
+                remark = "Good 🙂";
+            }
+            else {
+                remark = "Keep Practicing 💪";
+            }
+
+            result.innerHTML =
+                "Score: " + score + "/" + questions.length +
+                "<br>Percentage: " + percentage + "%" +
+                "<br>" + remark;
+
+        }
+    </script>
+
+</body>
+
+</html>

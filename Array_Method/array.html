@@ -6,7 +6,26 @@
     <title>Document</title>
 </head>
 <body>
+     <!--Class work -->
+     <input type="text" id="inputText">
+     <button onclick="show()">Click</button>
+
+     <input type="text" id="input">
+     <button id="userBtn">Click me</button>
+
     <script>
+
+        let userBtn = document.getElementById("userBtn");
+        let userInput = document.getElementById("input");
+        userBtn.addEventListener("click", ()=>{
+            let getUserValue = userInput.value;
+            let user = {
+                name: getUserValue
+            }
+            console.log(user);
+        })
+
+
         let names = ["David", "Damilare", "Olamide", "Israel"];
         console.log(name[2]);
         names[3] = "Philip";
@@ -23,6 +42,38 @@
 
         // Assignment
         // Read and study object tomorrow class
+
+
+         let person = {
+            "my name": "Sade",
+            age: 18,
+            "gender": "female",
+            student: true,
+            canCode(){
+                // console.log(person["my name"] + "can code")
+                console.log(`${person["my name"]} can code`)
+            },
+            canTalk(){
+                console.log(`${person["my name"]} is ${this.age} years old`)
+            }
+        }
+        console.log(person);
+        // Accessing the properties and method using dot notation
+        // console.log(person.name)
+        person.canCode()
+        person.canTalk()
+
+    //    Classwork
+
+    let inputText = document.getElementById("inputText");
+    let button = document.getElementById("btn");
+
+    function show(){
+        let students = {
+            department: inputText.value
+        };
+        console.log(students);
+    }
     </script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- My own output (Value) -->
+    <input type="text" id="key">
+    <input type="text" id="userValue">
+    <button onclick="display()">Click here</button>
+
+    <!-- Correction to the Assignment -->
+    <input type="text" id="first">
+    <input type="text" id="second">
+    <button id="btn">Click me</button>
+
+    <script>
+        // correction to the assignment
+        let firstUser = document.getElementById("first");
+        let secondUser = document.getElementById("second");
+        let userBtn = document.getElementById("btn");
+        let obj = []
+        userBtn.addEventListener("click", ()=>{
+            let firstUserValue = firstUser.value;
+            let secondUserValue = secondUser.value;
+            obj[firstUserValue] = secondUserValue;
+            console.log(obj);
+        })
+
+// My own output (Value)
+        let key = document.getElementById("key");
+        let value = document.getElementById("suerValue");
+
+        function display(){
+
+            if (key.value == '') {
+                alert("Field cannot be empty");
+
+            } else {
+                let userInput  ={
+                [key.value]: userValue.value 
+                
+            }
+             console.log(userInput);
+          
+           }
+
+            } 
+           
+    </script>
+</body>
+</html>
