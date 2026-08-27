@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+</head>
+
+
+<body>
+
+    <div id="display"></div>
+
+    <script>
+
+        //asynchronous and synchronous programming
+
+        // console.log("hello world");
+
+        // console.log(7 * 2);
+
+
+        // asynchronous
+
+        // setTimeout(() => {
+
+        //     console.log("Con");
+
+
+        // }, timeout);
+
+
+        //CRUD
+
+        //C-CREATE -post
+
+        //R-READ - get
+
+        //U-UPDATE - patch/put
+
+        //D-DELETE - delete
+
+
+        let baseUrl = "https://fakestoreapi.com";
+
+        let display = document.getElementById("display");
+
+
+        const getAllProducts = async () => {
+
+            try {
+
+                let response = await fetch(`${baseUrl}/products`);
+
+                console.log(response);
+
+                let productData = await response.json();
+
+                console.log(productData);
+
+                displayProducts(productData)
+
+
+            } catch (error) {
+
+                console.log(error.message);
+
+
+
+            }
+
+
+
+
+        }
+
+
+
+
+        function displayProducts(products) {
+
+            products.forEach(product => {
+
+                display.innerHTML += `
+
+<div class="card">
+<img src="${product.image}" alt=""/>
+
+<h1>${product.title}</h1>
+
+<p>${product.description.slice(0, 100)}...</p>
+
+<p>${product.price}</p>
+
+<h4>${product.rating.rate}</h4>
+<h4>${product.rating.count}</h4>
+
+<h3>${product.category}</h3>
+<button>Read More</button>
+</div>
+
+`
+
+            });
+
+        }
+
+
+        getAllProducts()
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>

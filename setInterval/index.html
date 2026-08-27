@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="userInput">
+    <button id="btn">Increase</button>
+
+    <script>
+        let user = document.getElementById('userInput');
+        console.log(user);
+        
+        let userBtn = document.getElementById('btn');
+        function getUserInput() {
+            setInterval(()=>{
+            let userValue = Number(user.value);
+            user.value = userValue + 1;
+        }, 1000);
+        }
+        
+        // let result = setInterval(()=>{
+        //     let userValue = Number(user.value);
+        //     user.value = userValue + 1;
+        // }, 1000);
+        userBtn.addEventListener('click', getUserInput);
+        
+
+        //1s == 1000ms
+        //setInterval
+        // let greet = setInterval(()=>{
+        //     console.log('Hello');
+        //     callName()
+        // }, 2000)
+
+        // function callName() {
+        //     console.log('Ayomide');
+            
+        // }
+        // clearInterval(greet)
+
+
+        //setTimeout
+        // setTimeout(() => {
+        //     console.log("Be serious");
+            
+        // }, 3000);
+        
+        
+    </script>
+</body>
+</html>

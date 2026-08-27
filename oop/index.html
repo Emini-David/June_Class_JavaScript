@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //OOP- Object oriented programming
+    //    let studentOne = {
+    //     name: "Tope",
+    //     age: 12,
+    //     gender: "male",
+    //     complexion: "light",
+    //     canWalk(){
+    //         console.log(`${this.name} can walk`);
+            
+    //     }
+    //    }
+
+    //    studentOne.canWalk()
+       
+
+    //    let studentTwo = {
+    //     name: "Ope",
+    //     age: 22,
+    //     gender: "female",
+    //     complexion: "light"
+    //    }
+
+    //    let studentThree = {
+    //     name: "Olamide",
+    //     age: 20,
+    //     gender: "female",
+    //     complexion: "light"
+    //    }
+
+
+       class Student {
+            constructor(name, age, gender, complexion) {
+                this.name = name
+                this.age = age
+                this.gender = gender
+                this.complexion = complexion
+            }
+
+            canCode(){
+                console.log(`${this.name} can code`);
+                
+            }
+       }
+
+       class Teacher extends Student {
+        
+            constructor(name, age, gender, complexion) {
+                super(name, age, gender, complexion)
+            }
+       }
+
+       let teacherOne = new Teacher("Ayo", 20, "male", "dark");
+       console.log(teacherOne);
+       teacherOne.canCode()
+       
+
+       let studentOne = new Student("Olamide", 12, "female", "light")//creating an object
+       console.log(studentOne);
+       studentOne.canCode();
+       //new - means creating instance of a class
+       
+
+       let studentTwo = new Student("David", 20, "male", "dark")
+       console.log(studentTwo);
+       studentTwo.canCode()
+
+       //4 pillars of oop
+       //Encapsulation
+
+       //Inheritance
+       //Abstraction
+       //Polymorphism
+    //    Based on what learn create a todo list using OOP
+
+
+       
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 120px; color: crimson; text-align: center; align-items: center; justify-items: center;"
+        id="time"></h1>
+
+
+    <div style="text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <label>Hour: <input type="number" id="hourInput" style="width: 50px;"></label>
+        <label>Minutes: <input type="number" id="minuteInput" style="width: 50px;"></label>
+        <label>Seconds: <input type="number" id="secondInput" style="width: 50px;"></label>
+
+        <br><br>
+
+        <button onclick="setAlarm()">Set Alarm</button>
+        <button onclick="stopAlarmSound()" id="stopAlarmBtn" style="display: none;">Stop Alarm</button>
+
+        <p id="status"></p>
+
+    </div>
+    <audio id="alarmSound" src="rooster.wav" preload="auto" loop></audio>
+
+    <script>
+        function showTime() {
+            let currentTime = new Date();
+
+            let hours = String(currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
+            let minutes = String(currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
+            let seconds = String(currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+
+
+            let time = document.getElementById("time").textContent =
+                `${hours}: ${minutes}: ${seconds}`;
+
+            checkAlarm(currentTime);
+        }
+        setInterval(showTime, 1000)
+        showTime();
+
+
+    </script>
+</body>
+
+</html>

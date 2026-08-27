@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // CRUD Operation
+        //C -  Create (post method)
+        //R -  Read (get method)
+        //U -  Update (Patch, Put)
+        //D -  Delete
+
+
+       let baseUrl = "https://fakestoreapi.com/products"
+        
+       const getAllProducts = async ()=>{
+        try {
+            let response = await fetch(`${baseUrl}/products`);
+            let data = await response.json();
+            console.log(data);
+        } catch (error) {
+            colnsole.log(error.message);
+        }
+       }
+       getAllProducts()
+    </script>
+</body>
+</html>

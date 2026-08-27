@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function greet(name) {
+            return `Hello ${name}`;
+        }
+
+        function welcome(callback) {
+            console.log(callback("David"));
+        }
+
+        welcome(greet);
+
+        // ForEach
+        // forEach runs a given function once for every item in an array
+        // We pass a function (the callback) into forEach.
+        // forEach doesn't know or care what the function does —
+        // it just calls it once per name in the array.
+
+        const graduates = ["Amara", "Tunde", "Chika"];
+        graduates.forEach(function (name) {
+            console.log(`${name}, please come and collect your certificate!`);
+        });
+
+        // Real life: the "announcer" (forEach) doesn't know each grad's name in advance.
+        // You (the caller) supply the "how to announce" logic as a function.
+
+        const students = ["David", "Grace", "John"];
+
+        students.forEach(function (student) {
+            console.log(student);
+        });
+
+        // map takes a function and applies it to EVERY item,
+        // then returns a brand NEW array with the results.
+        const pricesInNaira = [500, 1200, 3000];
+
+        // Suppose 1 USD = 1600 Naira (just an example rate)
+        const pricesInUSD = pricesInNaira.map(function (price) {
+            return (price / 1600).toFixed(2); // convert and round to 2 decimals
+        });
+
+        console.log(pricesInUSD); // ["0.31", "0.75", "1.88"]
+
+        // Real life: map is like handing every item on a list to a "converter machine"
+        // and getting a new list back — the original list is untouched.
+
+        // map()
+        // Definition
+        // Creates a NEW array after modifying every item.
+        // Think of a photocopy machine.
+        // Original stays unchanged.
+
+        const prices = [100, 200, 300];
+        const newPrices = prices.map(price => price + 50);
+        console.log(newPrices);
+
+        // filter()
+        // Definition
+        // Keeps only items that satisfy a condition.
+        // Imagine a security guard allowing only people above 18 years into a club.
+
+        const ages = [15, 18, 20, 13, 25];
+        const adults = ages.filter(age => age >= 18);
+        console.log(adults);
+
+        // Example: filter — Real life: Picking only affordable items from a menu
+
+        // filter takes a function that returns true or false (a "test")
+        // and keeps only the items that pass the test.
+        const menuPrices = [500, 1500, 2500, 800, 4000];
+        const affordableItems = menuPrices.filter(function (price) {
+            return price <= 1000; // the "test": is this item 1000 Naira or less?
+        });
+        console.log(affordableItems); // [500, 800]
+
+        // Real life: like going through a menu and only picking items within your budget.
+
+
+        // Example: reduce — Real life: Totaling up a shopping cart
+        // reduce takes a function and "boils down" an entire array into ONE value.
+        const cart = [500, 1500, 2500, 800];
+        const total = cart.reduce(function (runningTotal, currentPrice) {
+            return runningTotal + currentPrice; // add current price to the running total
+        }, 0); // 0 is the starting value of runningTotal
+
+        console.log(total); // 5300
+        // Real life: like a cashier adding up each item's price one at a time
+        // until they reach your final bill.
+
+        // reduce()
+        // // This is the king 👑 of Higher-Order Functions.
+        // Definition
+        // Turns an array into one final value.
+        // Examples: (Sum, Average, Total, Largest number)
+
+        const numbers = [10, 20, 30, 40];
+        const add = numbers.reduce((sum, current) => {
+            return sum + current;
+        }, 0);
+
+        console.log(add);
+
+        // find()
+        // Definition
+        // Returns ONLY the first item that matches.
+
+        const users = [
+            { name: "David", age: 24 },
+            { name: "John", age: 18 },
+            { name: "Grace", age: 30 }
+        ];
+        const person = users.find(user => user.age > 20);
+        console.log(person);
+
+        // findIndex()
+        // Returns the position (index) of the first matching item.
+
+        const fruits = ["Apple", "Orange", "Banana"];
+        const index = fruits.findIndex(fruit => fruit === "Banana");
+        console.log(index);
+
+
+        // some()
+        // Returns true if AT LEAST ONE item passes.
+        // Think of WAEC.
+        // If one student cheats...
+        // The exam is cancelled.
+
+        const scores = [20, 45, 80];
+        const passed = scores.some(score => score >= 50);
+        console.log(passed);
+
+        // every()
+        // Returns true ONLY if ALL items satisfy the condition.
+
+        const score = [80, 90, 75];
+        const pass = score.every(score => score >= 50);
+        console.log(pass);
+
+        // sort()
+        // Sorts an array.
+        const names = ["John", "David", "Grace"];
+        names.sort();
+        console.log(names);
+
+        // Callback Function
+        // A callback is simply a function passed into another function.
+
+        function greet(name) {
+            console.log("Hello " + name);
+        }
+        function process(callback) {
+            callback("David");
+        }
+        process(greet);
+
+        // Function Returning Another Function
+
+        function multiply(num) {
+
+            return function (value) {
+                return value * num;
+            }
+
+        }
+
+        const double = multiply(2);
+
+        console.log(double(10));
+
+
+        // Exercise
+        const student = [
+            { name: "David", score: 95 },
+            { name: "Grace", score: 72 },
+            { name: "John", score: 48 },
+            { name: "Junior", score: 50 },
+            { name: "Deborah", score: 43 },
+            { name: "Susan", score: 85 },
+            { name: "Paul", score: 66 },
+            { name: "Gift", score: 35 },
+            { name: "Eve", score: 47 },
+            { name: "Christain", score: 51 },
+
+        ];
+        student.forEach(function (student) {
+            console.log(student);
+        })
+    </script>
+</body>
+
+</html>

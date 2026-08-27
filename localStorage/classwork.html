@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="display"></p>
+
+    <script>
+        let candidate ={
+            name: "Victor",
+            age: 25,
+            gender: "Male",
+            tribe: "Yoruba",
+            status: "Single"
+        }
+        let dislay = document.getElementById("display").innerHTML = `
+        Name:${candidate.name}<br>
+        Age:${candidate.age}<br>
+        Gender:${candidate.gender}<br>
+        tribe:${candidate.tribe}<br>
+        status:${candidate.status}`
+
+        localStorage.setItem("student", JSON.stringify(candidate))
+    </script>
+</body>
+</html>

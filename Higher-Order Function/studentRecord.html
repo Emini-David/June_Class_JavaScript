@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div style="width: 50%; height: 40vh;  background-color: yellow; padding: 10px; ">
+        <div style="margin-bottom: 10px;">
+            <input type="text" placeholder="Enter your name" id="userName">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <input type="text" placeholder="Enter your phonenumber" id="phone">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <input type="text" placeholder="Enter your gender" id="gender">
+        </div>
+        <div>
+            <input type="text" id="search" placeholder="Search..." onkeyup="searchUser()">
+        </div>
+        <button onclick="addUser()">Add user</button>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phonenumber</th>
+                <th scope="col">Gender</th>
+            </tr>
+        </thead>
+        <tbody id="display">
+
+
+        </tbody>
+    </table>
+
+    <script>
+        let getUsername = document.getElementById("userName");
+        let getNumber = document.getElementById("phone");
+        let getGender = document.getElementById("gender");
+        let displayEl = document.getElementById("display")
+        let getSearch = document.getElementById("search");
+        let users = []
+
+        function addUser() {
+            let user = {
+                name: getUsername.value,
+                phonenumber: getNumber.value,
+                gender: getGender.value
+            }
+
+            // console.log(user);
+            users.push(user)
+            console.log(users);
+            displayUsers(users)
+
+            getUsername.value = "";
+            getNumber.value = "";
+            getGender.value = ""
+
+        }
+
+
+        const displayUsers = (students) => {
+            displayEl.innerHTML = ""
+            students?.forEach((user, index, array) => {
+                displayEl.innerHTML += `
+                    <tr>
+                        <th scope="row">${index + 1}</th>
+                        <td>${user.name}</td>
+                        <td>${user.phonenumber}</td>
+                        <td>${user.gender}</td>
+                        <td><button class="btn btn-danger" onclick ="deleteUser(${index})">Delete</button></td>
+                    </tr>
+                `
+            })
+        }
+        function deleteUser(ind) {
+            users.splice(ind, 1);
+
+            displayUsers(users)
+
+
+        }
+
+        // Searching
+        function searchUser() {
+            let searchValue = getSearch.value.toLowerCase().trim();
+            let searchResults = users.filter(user =>
+                user.name.toLowerCase().includes(searchValue)
+            );
+            console.log('the real user', searchResults.length);
+            if (searchUser !== "" && searchResults.length !== 0) {
+                displayEl.innerHTML = ""
+                searchResults.forEach((user, index) => {
+                    displayEl.innerHTML += `
+                    <tr>
+                        <th scope="row">${index + 1}</th>
+                        <td>${user.name}</td>
+                        <td>${user.phonenumber}</td>
+                        <td>${user.gender}</td>
+                        <td><button class="btn btn-danger" onclick ="deleteUser(${index})">Delete</button></td>
+                    </tr>
+                `
+                })
+            } else if (searchResults.length == 0) {
+                console.log('hytyt');
+                 displayEl.innerHTML = ""
+                 displayEl.innerHTML = 
+                 `<p>user not found</p>`
+            }
+            else {
+                displayUsers()
+            }
+
+
+
+
+
+
+        }
+
+        // Filter
+        let numbers = [1, 2, 3, 4, 5, 6];
+        let result = numbers.filter((num, index, array) => num % 2 == 0)
+        console.log(result)
+
+        let secondResult = numbers.find((number, i, a) => number % 2 == 0);
+        console.log(secondResult);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

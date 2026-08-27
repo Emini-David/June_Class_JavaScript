@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="width: 15%; background-color: yellow; padding: 10px;">
+        <div class="mb-2">
+            <input type="text" id="productName" placeholder="Enter Product Name" class="form-control">
+        </div>
+
+        <div class="mb-2">
+            <input type="number" id="productPrice" placeholder="Enter Product Price" class="form-control">
+        </div>
+
+        <div class="mb-2">
+            <input type="number" id="productQuantity" placeholder="Enter Product Quantity" class="form-control">
+        </div>
+
+        <button class="btn btn-primary" onclick="addProduct()">
+            Save Product
+        </button>
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Product Name</th>
+                <th>Price ($)</th>
+                <th>Quantity</th>
+                <th>Total ($)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="display"></tbody>
+    </table>
+
+    <script>
+        let getProductName = document.getElementById("productName");
+        let getProductPrice = document.getElementById("productPrice");
+        let getProductQuantity = document.getElementById("productQuantity");
+        let displayEl = document.getElementById("display");
+        let products = [];
+
+        function addProduct() {
+            let product = {
+                name: getProductName.value,
+                price: Number(getProductPrice.value),
+                quantity: Number(getProductQuantity.value)
+            };
+            products.push(product);
+            displayProducts();
+
+            getProductName.value = "";
+            getProductPrice.value = "";
+            getProductQuantity.value = "";
+        }
+        Number()
+
+        function displayProducts() {
+
+            displayEl.innerHTML = "";
+
+            products.forEach((product, index, array) => {
+
+                let total = product.price * product.quantity;
+
+                displayEl.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${product.name}</td>
+                <td>$${product.price}</td>
+                <td>${product.quantity}</td>
+                <td>$${total}</td>
+
+                <td>
+                    <button class="btn btn-danger"
+                    onclick="deleteProduct(${index})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `;
+            });
+
+        }
+        function deleteProduct(index) {
+
+            products.splice(index, 1);
+
+            displayProducts();
+
+        }
+    </script>
+</body>
+
+</html>

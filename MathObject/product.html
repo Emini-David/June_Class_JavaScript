@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="page-title">Featured Products</h1>
+    <div id="productContainer"></div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 30px 0 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        #productContainer {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .card p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            #productContainer {
+                grid-template-columns: repeat(3, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            #productContainer {
+                grid-template-columns: repeat(2, minmax(200px, 1fr));
+                padding: 20px;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #productContainer {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 1.4rem;
+                margin-top: 20px;
+            }
+        }
+    </style>
+
+    
+    <script>
+    
+//     let baseUrl = "https://fakestoreapi.com/products";
+//     const getAllProducts = async () => {
+//         try {
+//             let response = await fetch(baseUrl);
+//             let data = await response.json();
+//             console.log(data);
+       
+//         let productsContainer = document.getElementById("productContainer");
+//         data.forEach((product) => {
+//             productsContainer.innerHTML += `
+//                 <div>
+//                     <img src="${product.image}" width="150">
+//                     <h2>${product.title}</h2>
+//                     <p>$${product.price}</p>
+//                     <p>${product.description}</p>
+//                 </div>
+//             `;
+//         });
+
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// };
+
+// getAllProducts();
+
+       
+
+        let products = [
+            {
+                id: 1,
+                name: "Nike Air Max",
+                category: "Shoes",
+                price: 85000,
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f96476a5-469c-4574-b2d6-071580cea2d9/AIR+DT+MAX+%2796+LOW.png"
+            },
+            {
+                id: 2,
+                name: "white & Black Adidas sneakers – Icestic Footwear",
+                category: "Shoes",
+                price: 70000,
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://icesticfootwear.com.ng/wp-content/uploads/2024/11/adidas-3-2.jpeg"
+            },
+            {
+                id: 3,
+                name: "Callaway Men's Solana TRX v3 Golf Shoes - Worldwide Golf Shops",
+                category: "Shoes",
+                price: "$116.89",
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://worldwidegolf.vtexassets.com/arquivos/ids/11492579-800-auto?v=638374484811730000&width=800&height=auto&aspect=true"
+            },
+            {
+                id: 4,
+                name: "Black Versace Luxury Leather Shoes",
+                category: "Shoes",
+                price: 60000,
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://dtop.com.ng/wp-content/uploads/2022/08/black-Versace-luxury-leather-shoes.jpeg"
+            },
+            {
+                id: 5,
+                name: "Men's Mix Shirt",
+                category: "Shirt",
+                price: 20000,
+                color: "Blue",
+                expiryDate: "N/A",
+                image: "https://www-konga-com-res.cloudinary.com/media/catalog/product/S/C/205867_1696480316.jpg"
+            },
+            {
+                id: 6,
+                name: "vintage shirt and trouser",
+                category: "Shirt and trouser",
+                price: 30000,
+                color: "Orange",
+                expiryDate: "N/A",
+                image: "https://i.pinimg.com/736x/bf/5e/47/bf5e47897ba7737b7956bbd4b6ffc1b0.jpg"
+            },
+            {
+                id: 7,
+                name: "Navy Blue Slim Fit Oxford Long Sleeve Shirt",
+                category: "Shirt",
+                price: 49700,
+                color: "Navy Blue",
+                expiryDate: "N/A",
+                image: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/F29968s2.jpg?im=Resize,width=750"
+            },
+            {
+                id: 8,
+                name: "Casablanca Joyaux D'Afrique silk shirt",
+                category: "Shirt",
+                price: "$808",
+                color: "Green",
+                expiryDate: "N/A",
+                image: "https://cdn-images.farfetch-contents.com/22/72/43/42/22724342_52767472_1000.jpg?ov=true"
+            },
+            {
+                id: 9,
+                name: "Men's Jacket&Pants Suit",
+                category: "Suit",
+                price: 10000,
+                color: "Green",
+                expiryDate: "N/A",
+                image: "https://www.munaluchibridal.com/wp-content/uploads/2024/11/charity-dotun-bachelorette-wedding-munaluchi_069-800x800.jpg"
+            },
+            {
+                id: 10,
+                name: "Men's Italian Suits",
+                category: "Suit",
+                price: 110000,
+                color: "Deep Blue",
+                expiryDate: "N/A",
+                image: "https://cdn.suitdirect.co.uk/upload/siteimages/medium/ss25203tj_170_a.jpg"
+            },
+            {
+                id: 11,
+                name: "Prom suits for boys black",
+                category: "Shirt",
+                price: 97650,
+                color: "Deep Wine",
+                expiryDate: "N/A",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQTgy9bzpdUoBUklMkAc6wQU43UBszF_hS-I4KgJyuEeek-63bkSwuX-iq&s=10"
+            },
+            {
+                id: 12,
+                name: "Men's Classic Three-Piece Suit Set: Jacket + Vest + Trousers ",
+                category: "Shirt",
+                price: 100000,
+                color: "Cream",
+                expiryDate: "N/A",
+                image: "https://img-1.kwcdn.com/thumbnail/s/5bf04075feaaee41988b1305b8e95426_741261762813.jpg?imageView2/2/w/800/q/70/format/avif"
+            },
+            {
+                id: 13,
+                name: "Versace Wristwatch",
+                category: "Wristwatch",
+                price: 55000,
+                color: "Gold",
+                expiryDate: "N/A",
+                image: "https://pictures-nigeria.jijistatic.net/119116665_NjIwLTgyNy05NDk4YmQyMTEw.webp"
+            },
+            {
+                id: 14,
+                name: "Rolex Datejust 40mm",
+                category: "Wrist watch",
+                price: 51140,
+                color: "Leather",
+                expiryDate: "N/A",
+                image: "https://cdn-images.farfetch-contents.com/29/61/20/82/29612082_58647748_1000.jpg?ov=true"
+            },
+            {
+                id: 15,
+                name: "Casino Series Silver Automatic Watch",
+                category: "Wrist watch",
+                price: "$1100",
+                color: "Silver",
+                expiryDate: "N/A",
+                image: "https://luckyharvey.com/cdn/shop/files/Untitled-2.png?v=1768990943&width=1024"
+            },
+            {
+                id: 16,
+                name: "Heritage Black-Silver",
+                category: "Wrist watch",
+                price: "₦656,750.00",
+                color: "Black-Silver",
+                expiryDate: "N/A",
+                image: "https://micserah.com/cdn/shop/files/HERITAGE_-_2.png?height=1180&crop=center&v=1755266887"
+            },
+            {
+                id: 17,
+                name: "Jaxon Hats C-Crown Crushable Wool Felt Fedora Hat",
+                category: "Hat",
+                price: "$59.95",
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://images.acenda-static.com/villagehatshop/product/original/1/15bdca0e08c66e.jpg"
+            },
+            {
+                id: 18,
+                name: "Dogtooth Brown Flat Cap",
+                category: "Cap",
+                price: 24640,
+                color: "Brown",
+                expiryDate: "N/A",
+                image: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/W23373s.jpg?im=Resize,width=750"
+            },
+            {
+                id: 19,
+                name: "NEW ERA CAP for Men",
+                category: "Cap",
+                price: "$47",
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://cdn-images.farfetch-contents.com/34/33/15/20/34331520_65552448_1000.jpg?ov=true"
+            },
+            {
+                id: 20,
+                name: "Vintage British Herringbone Flat Cap",
+                category: "Cap",
+                price: "₦10,660",
+                color: "Black",
+                expiryDate: "N/A",
+                image: "https://img.kwcdn.com/product/fancy/380e6e15-1ce4-47b2-89bb-e82c1613d4c9.jpg?imageView2/2/w/800/q/70/format/avif"
+            },
+
+        ]
+
+        products.forEach((product, index, array) => {
+            let card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+            <img src="${product.image}">
+            <h2>${product.name}</h2>
+            <p>${product.category}</p>
+            <p>${product.price}</p>
+            <p>${product.color}</p>
+            <p>${product.expiryDate}</p>
+            `;
+
+            let productContainer = document.getElementById("productContainer").appendChild(card);
+        });
+
+        
+    </script>
+</body>
+
+</html>

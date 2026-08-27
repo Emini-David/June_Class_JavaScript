@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alarm Clock</title>
+<style>
+  /* Basic page styling - nothing fancy, just clean and readable */
+  body {
+    font-family: Arial, sans-serif;
+    background: #1e1e2f;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .clock-box {
+    background: #2b2b40;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  /* This shows the live current time so David can see it counting up */
+  #currentTime {
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin: 15px 0;
+  }
+
+  /* The three inputs sit next to each other */
+  .inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .inputs label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #aaa;
+  }
+
+  .inputs input {
+    width: 60px;
+    font-size: 20px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background: #6c5ce7;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #5a4bd1;
+  }
+
+  #stopBtn {
+    background: #e74c3c;
+    margin-top: 10px;
+    display: none; /* only shows once the alarm is ringing */
+  }
+
+  /* This is where we tell the user what's going on, instead of using the console */
+  #status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #9be09b;
+    min-height: 18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="clock-box">
+  <h1>⏰ Alarm Clock</h1>
+
+  <!-- Live current time, so you can see the clock actually running -->
+  <div id="currentTime">00:00:00</div>
+
+  <!-- The three inputs: Hour, Minutes, Seconds -->
+  <div class="inputs">
+    <div>
+      <label for="hourInput">Hour</label>
+      <input type="number" id="hourInput" min="0" max="23" value="0">
+    </div>
+    <div>
+      <label for="minuteInput">Minutes</label>
+      <input type="number" id="minuteInput" min="0" max="59" value="0">
+    </div>
+    <div>
+      <label for="secondInput">Seconds</label>
+      <input type="number" id="secondInput" min="0" max="59" value="0">
+    </div>
+  </div>
+
+  <button id="setAlarmBtn">Set Alarm</button>
+  <button id="stopBtn">Stop Alarm</button>
+
+  <div id="status"></div>
+</div>
+
+<!-- 
+  ================================
+  👉 YOUR ALARM SOUND GOES HERE 👈
+  ================================
+  Replace "your-sound-file.mp3" below with the actual name/path of your
+  own audio file. A few examples of what that might look like:
+
+    src="alarm.mp3"                     (file sitting in the same folder as this HTML file)
+    src="sounds/wake-up.mp3"            (file inside a "sounds" subfolder)
+    src="https://example.com/beep.mp3"  (a file hosted online)
+
+  "preload" loads the file early so there's no delay when the alarm rings.
+  "loop" makes it repeat automatically until the Stop button is clicked.
+-->
+<audio id="alarmSound" src="alarm_sound.wav" preload="auto" loop></audio>
+
+<script>
+  /*
+    ================================
+    STEP 1: Grab all the elements we need from the page
+    ================================
+    We store references to each input/button so we don't have to
+    call document.getElementById() over and over again.
+  */
+  const hourInput = document.getElementById('hourInput');
+  const minuteInput = document.getElementById('minuteInput');
+  const secondInput = document.getElementById('secondInput');
+  const setAlarmBtn = document.getElementById('setAlarmBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const statusEl = document.getElementById('status');
+  const currentTimeEl = document.getElementById('currentTime');
+
+  // 👉 Reference to the <audio> tag holding YOUR sound file (see above in the HTML)
+  const alarmSound = document.getElementById('alarmSound');
+
+  // This will hold the alarm time once it's set, e.g. "07:30:00"
+  let alarmTime = null;
+
+  /*
+    ================================
+    STEP 2: Keep a live clock running
+    ================================
+    setInterval runs a function over and over, every 1000ms (1 second).
+    Each time it runs, we:
+      1. Get the current time
+      2. Display it on the page
+      3. Check if it matches the alarm time
+  */
+  setInterval(() => {
+    const now = new Date();
+
+    // padStart(2, '0') makes sure single digits show as "09" instead of "9"
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+
+    const nowString = `${h}:${m}:${s}`;
+    currentTimeEl.textContent = nowString;
+
+    // If an alarm has been set AND the current time matches it, ring!
+    if (alarmTime && nowString === alarmTime) {
+      ringAlarm();
+    }
+  }, 1000);
+
+  /*
+    ================================
+    STEP 3: Set Alarm button
+    ================================
+    When clicked, we read the three input values, build a time string
+    like "07:30:00", save it, and alert the user that it's set.
+  */
+  setAlarmBtn.addEventListener('click', () => {
+    const h = String(hourInput.value).padStart(2, '0');
+    const m = String(minuteInput.value).padStart(2, '0');
+    const s = String(secondInput.value).padStart(2, '0');
+
+    alarmTime = `${h}:${m}:${s}`;
+
+    // The alert you asked for
+    alert('Alarm has been set');
+
+    // Also show it on the page (not just console) so it's visible
+    statusEl.textContent = `Alarm set for ${alarmTime}`;
+  });
+
+  /*
+    ================================
+    STEP 4: Ring the alarm
+    ================================
+    This plays YOUR audio file (the one set in the <audio> tag above).
+    "loop" is already set on the tag, so it will keep repeating on its
+    own until Stop Alarm is clicked — no setInterval needed for sound.
+  */
+  function ringAlarm() {
+    statusEl.textContent = '⏰ Alarm ringing!';
+    stopBtn.style.display = 'inline-block';
+
+    alarmSound.currentTime = 0; // start playback from the very beginning
+    alarmSound.play();          // .play() starts your audio file
+
+    // Clear the alarm time so it doesn't try to ring again next second
+    alarmTime = null;
+  }
+
+  /*
+    ================================
+    STEP 5: Stop Alarm button
+    ================================
+    .pause() stops playback, and resetting currentTime to 0 means
+    if the alarm rings again later, it starts from the beginning
+    instead of wherever it left off.
+  */
+  stopBtn.addEventListener('click', () => {
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+    stopBtn.style.display = 'none';
+    statusEl.textContent = 'Alarm stopped';
+  });
+</script>
+
+</body>
+</html>
