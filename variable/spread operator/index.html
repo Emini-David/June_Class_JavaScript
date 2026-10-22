@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numbers = [1, 2, 3, 4];
+        let moreNums = [5, 6, 7];
+        let shallowCopyOfNums = [...numbers];
+        console.log(shallowCopyOfNums);
+
+        let first = ["Seun", "Tope", "Sade"];
+        let second = ["Tunde", "Victor", "Pius"];
+        let mergingArrays = [...first,...second, "Henry"]
+        console.log(mergingArrays);
+
+        // spread operator in an object
+        let person = {name:"Wasiu", gender: "Gay", age: 10, complexion: "dark"}
+        // for spread operator, if they have the same key i.e complexion, the last one always override the first one. So, we will have light instead of dark.
+        updatedPerson = {...person, complexion:"light"}
+        console.log(updatedPerson);
+
+
+        // rest operator
+        const fruits = ["Apple", "Orange", "Mango", "Banana"]
+        const [one, ...rest] = fruits
+        // console.log(two);
+        console.log(rest);
+        
+        // rest operator in object
+        let obj ={
+            name: "Tony",
+            age: 23,
+            gender: "Male",
+            occupation: "Investor"
+        }
+        let {name, ...remaining} = obj
+        console.log(name)
+        console.log(remaining);
+        
+        
+        
+    </script>
+</body>
+</html>

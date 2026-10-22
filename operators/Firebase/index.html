@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Feed</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="page-title">Articles & Insights</h1>
+    <div id="display">
+      <div class="loading">Loading posts...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8zEYVZeDbBGSMlo5p-wB9yscs7khqP28",
+      authDomain: "blog-6dcc0.firebaseapp.com",
+      projectId: "blog-6dcc0",
+      storageBucket: "blog-6dcc0.firebasestorage.app",
+      messagingSenderId: "242417415857",
+      appId: "1:242417415857:web:8ae1e63023dc21436e9490"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const colref = collection(db, "blog");
+    const display = document.getElementById("display"); 
+
+    let blogs = [];
+
+    const userBlog = async () => {
+      try {
+        const querySnapshot = await getDocs(colref);
+        blogs = [];
+
+        querySnapshot.forEach(doc => {
+          blogs.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+
+        displayBlog();
+      } catch (error) {
+        console.error(error.message);
+        display.innerHTML = `<div class="empty">Failed to load blog posts.</div>`;
+      }
+    };
+
+    const displayBlog = () => {
+      if (blogs.length === 0) {
+        display.innerHTML = `<div class="empty">No blog posts found.</div>`;
+        return;
+      }
+
+      display.innerHTML = blogs.map(blog => `
+        <article class="blog-card">
+          ${blog.image ? `<img src="${blog.image}" alt="${blog.title || 'Blog cover'}">` : ''}
+          <div class="blog-content">
+            <h2>${blog.title || 'Untitled Post'}</h2>
+            <p>${blog.content || ''}</p>
+          </div>
+        </article>
+      `).join('');
+    };
+
+    userBlog();
+  </script>
+</body>
+</html>

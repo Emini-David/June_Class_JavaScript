@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <form class="w-50 m-auto" id="submitForm">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">SignUp</button>
+    </form>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8zEYVZeDbBGSMlo5p-wB9yscs7khqP28",
+            authDomain: "blog-6dcc0.firebaseapp.com",
+            projectId: "blog-6dcc0",
+            storageBucket: "blog-6dcc0.firebasestorage.app",
+            messagingSenderId: "242417415857",
+            appId: "1:242417415857:web:8ae1e63023dc21436e9490"
+        };
+
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app)
+        const db = getFirestore(app);
+        const colRef = collection(db, "users")
+        const submitForm = document.getElementById('submitForm');
+        submitForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            signUp()
+        })
+
+        const signUp = async () => {
+            let user = {
+                username: submitForm.username.value,
+                email: submitForm.email.value,
+                password: submitForm.password.value
+            }
+
+            // let username = submitForm.username.value;
+            // let useremail = submitForm.email.value;
+            // let userpassword = submitForm.password.value;
+
+            console.log(user);
+            try {
+
+                const userCredentials = await createUserWithEmailAndPassword(auth, user.email, user.password);
+                console.log(userCredentials);
+
+                const userDocSnapShot = await addDoc(colRef, user
+                    //  {
+                    //     uid: userCredentials.user.uid,
+                    //     userName: username,
+                    //     userEmail: useremail,
+                    //     userPassword: userpassword
+                    // }
+                );
+                console.log(userDocSnapShot);
+
+            } catch (error) {
+                console.log(error.message);
+
+            }
+
+        }
+
+
+
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

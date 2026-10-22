@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // destructuring
+        // object destructuring
+
+        let obj = {
+            name: "Sola",
+            gender: "Female"
+        }
+
+        // obj.complexion = "dark";
+        // console.log(obj);
+
+        // let {name: fullName, gender, country = "UK", complexion = "Dark"} = obj;
+        // console.log(fullName);
+        // console.log(gender);
+        // console.log(country);
+        // console.log(complexion);
+        
+
+        let colors = ["blue", "green", "yellow", "black", "purple"]
+        // console.log(colors[2]);
+
+         let [colorOne, colorTwo, colorThree, colorFour, colorFive] = colors;
+        // Here, we have given it a variable name. That's we have declared how we want to access the listed colors. Then, to call it we have:
+        console.log(colorOne);
+        console.log(colorThree);
+        console.log(colorFive);
+        
+
+        let student = {
+            student: "Jide",
+            gender: "male",
+            age: 22,
+            complexion: "black",
+            hobbies: ["singing", "dancing", "coding", "cooking"],
+            countryVisited: ["USA", {country: "Nigeria", city: "Abuja"}]
+        }
+        // let hobbies = [hobbiesOne, hobbiesTwo, hobbiesThree, hobbiesFour] = student.hobbies;
+        // console.log(hobbiesThree);
+        
+        let {hobbies} = student;
+        console.log(hobbies);
+       
+        let [countryOne, countryTwo] = student.countryVisited;
+        console.log(countryTwo.city); 
+
+        let [result, {country,city}] = student.countryVisited;
+        console.log(city);
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

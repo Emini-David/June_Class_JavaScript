@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Manager</title>
+  <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="main-title">My Blog Platform</h1>
+
+    <section class="blog-form-card">
+      <h2>Create a New Blog Post</h2>
+      <form id="blogForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" required placeholder="Enter blog title...">
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" id="author" required placeholder="Your name...">
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL</label>
+          <input type="text" id="image" required placeholder="https://example.com/image.jpg">
+        </div>
+
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" required placeholder="Write your post content..."></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="isPublished" checked>
+          <label for="isPublished">Publish immediately</label>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit">Publish Post</button>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="feed-heading">Latest Posts</h2>
+      <div id="display">
+        <p class="loading-state">Loading blogs...</p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8zEYVZeDbBGSMlo5p-wB9yscs7khqP28",
+      authDomain: "blog-6dcc0.firebaseapp.com",
+      projectId: "blog-6dcc0",
+      storageBucket: "blog-6dcc0.firebasestorage.app",
+      messagingSenderId: "242417415857",
+      appId: "1:242417415857:web:8ae1e63023dc21436e9490"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const colRef = collection(db, "blogs");
+
+    const displayContainer = document.getElementById('display');
+    const blogForm = document.getElementById('blogForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let blogs = [];
+
+    // Fetch and load blogs from Firestore
+    const fetchBlogs = async () => {
+      try {
+        const querySnapshot = await getDocs(colRef);
+        blogs = [];
+
+        querySnapshot.forEach(doc => {
+          blogs.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+
+        renderBlogs();
+      } catch (error) {
+        console.error("Error fetching blogs:", error.message);
+        displayContainer.innerHTML = `<p class="empty-state">Failed to load blogs. Please try again later.</p>`;
+      }
+    };
+
+    const renderBlogs = () => {
+      if (blogs.length === 0) {
+        displayContainer.innerHTML = `<p class="empty-state">No blog posts found. Create one above!</p>`;
+        return;
+      }
+
+      displayContainer.innerHTML = blogs.map(blog => `
+                <article class="blog-card">
+                    ${blog.image ? `<img src="${blog.image}" alt="${blog.title || 'Blog image'}">` : ''}
+                    <h2>${blog.title || 'Untitled'}</h2>
+                    <p>${blog.content || ''}</p>
+                    <div class="blog-meta">
+                        <span>By <strong>${blog.author || 'Anonymous'}</strong></span>
+                        <span>❤️ ${blog.noOfLikes || 0} Likes</span>
+                        <small>${blog.isPublished ? 'Published' : 'Draft'}</small>
+                    </div>
+                </article>
+            `).join('');
+    };
+
+    // Handle Form Submission to Firestore
+    blogForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Gather input values
+      const newBlog = {
+        title: document.getElementById('title').value.trim(),
+        author: document.getElementById('author').value.trim(),
+        image: document.getElementById('image').value.trim(),
+        content: document.getElementById('content').value.trim(),
+        noOfLikes: 0,
+        isPublished: document.getElementById('isPublished').checked,
+        createdAt: new Date()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Publishing...";
+
+      try {
+        // Save to Firestore
+        await addDoc(colRef, newBlog);
+
+        // Reset form inputs
+        blogForm.reset();
+        document.getElementById('isPublished').checked = true;
+
+        // Refresh data feed
+        await fetchBlogs();
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("Failed to publish blog post. Check console for details.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Publish Post";
+      }
+    });
+
+    // Initial application boot
+    fetchBlogs();
+  </script>
+</body>
+
+</html>
